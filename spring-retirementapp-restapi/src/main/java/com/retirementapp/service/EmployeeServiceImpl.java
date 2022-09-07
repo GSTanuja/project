@@ -48,4 +48,10 @@ public class EmployeeServiceImpl implements IEmployeeService {
 		return null;
 	}
 
+	@Override
+	public List<Employee> getEmployeeByPlanName(String planName) {
+		// TODO Auto-generated method stub
+		return employeeRepository.findEmployeeByPlanName(planName);
+	}
+
 }

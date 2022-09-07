@@ -15,5 +15,6 @@ public interface IEmployeeService {
 	Employee getById(int employeeId);
 	Employee getByFinalAmount(int employeeId);
 	List<Employee> getAll();
+	List<Employee> getEmployeeByPlanName(String planName);
 
 }

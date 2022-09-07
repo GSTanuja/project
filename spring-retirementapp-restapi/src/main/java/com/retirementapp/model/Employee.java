@@ -1,6 +1,8 @@
 package com.retirementapp.model;
 
-import javax.persistence.Column;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,10 +21,9 @@ public class Employee {
 	private Integer emplyoeeId;
 	private double salary;
 	private double finalAmount;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private AccountDetails accountDetails;
 	@ManyToOne
-	@Column(name = "uan_Id")
 	private Plan plan;
 
 	public Employee() {
@@ -30,11 +31,21 @@ public class Employee {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String employeeName, double salary, double finalAmount) {
+	public Employee(String employeeName, double salary, double finalAmount, AccountDetails accountDetails, Plan plan) {
 		super();
 		this.employeeName = employeeName;
 		this.salary = salary;
 		this.finalAmount = finalAmount;
+		this.accountDetails = accountDetails;
+		this.plan = plan;
+	}
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
 	}
 
 	public String getEmployeeName() {
@@ -77,18 +88,10 @@ public class Employee {
 		this.accountDetails = accountDetails;
 	}
 
-	public Plan getPlan() {
-		return plan;
-	}
-
-	public void setPlan(Plan plan) {
-		this.plan = plan;
-	}
-
 	@Override
 	public String toString() {
-		return "Employee [employeeName=" + employeeName + ", emplyoeeId=" + emplyoeeId + ", salary=" + salary
-				+ ", finalAmount=" + finalAmount + "]";
+		return "Employee [employeeName=" + employeeName + ", salary=" + salary + ", finalAmount=" + finalAmount
+				+ ", accountDetails=" + accountDetails + ", plan=" + plan + "]";
 	}
 
 }
