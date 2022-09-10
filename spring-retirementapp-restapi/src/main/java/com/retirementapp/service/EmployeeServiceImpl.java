@@ -1,5 +1,6 @@
 package com.retirementapp.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,34 +25,36 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Override
 	public void updateEmployee(Employee employee) {
-        employeeRepository.save(employee);
+		employeeRepository.save(employee);
 	}
 
 	@Override
 	public void deleteEmployee(int employeeId) {
-         employeeRepository.deleteById(employeeId);
+		employeeRepository.deleteById(employeeId);
 	}
 
 	@Override
 	public Employee getById(int employeeId) {
-		return null;
+		return employeeRepository.findById(employeeId).get();
 	}
 
 	@Override
 	public List<Employee> getAll() {
-		return null;
-	}
-
-	@Override
-	public Employee getByFinalAmount(int employeeId) {
-
-		return null;
-	}
-
-	@Override
-	public List<Employee> getEmployeeByPlanName(String planName) {
 		// TODO Auto-generated method stub
+		return employeeRepository.findAll();
+	}
+
+	@Override
+	public Employee getEmployeeByPlanName(String planName) {
+		
 		return employeeRepository.findEmployeeByPlanName(planName);
 	}
 
+	@Override
+	public Employee getEmployeeByBankName(String bankName) {
+		// TODO Auto-generated method stub
+		return employeeRepository.findEmployeeByBankName(bankName);
+	}
+
+	
 }

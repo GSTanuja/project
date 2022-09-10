@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class AccountDetails {
-	
+
 
 	@Id
 	@GeneratedValue(generator = "account_gen", strategy = GenerationType.AUTO)
@@ -19,14 +19,18 @@ public class AccountDetails {
 	private String bankName;
 	private long accountNo;
 
-	
+	public AccountDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public AccountDetails(String accountType, String bankName, long accountNo) {
 		super();
 		this.accountType = accountType;
 		this.bankName = bankName;
 		this.accountNo = accountNo;
 	}
-	
+
 	public Integer getAccountId() {
 		return accountId;
 	}
@@ -59,6 +63,4 @@ public class AccountDetails {
 		return "AccountDetails [accountType=" + accountType + ", bankName=" + bankName + ", accountNo=" + accountNo
 				+ "]";
 	}
-
-	
 }

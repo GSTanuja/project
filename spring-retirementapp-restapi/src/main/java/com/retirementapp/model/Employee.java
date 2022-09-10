@@ -4,10 +4,12 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -16,36 +18,28 @@ public class Employee {
 	private String employeeName;
 
 	@Id
-	@GeneratedValue(generator = "employee_gen", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "employee_gen", sequenceName = "employee_seq", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(generator = "employee_id", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "employee_id", sequenceName = "employee_seq", initialValue = 1, allocationSize = 1)
 	private Integer emplyoeeId;
 	private double salary;
-	private double finalAmount;
+	
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "account_id")
 	private AccountDetails accountDetails;
-	@ManyToOne
-	private Plan plan;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "employee_id")
+	private Set<Plan> planList;
 
 	public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String employeeName, double salary, double finalAmount, AccountDetails accountDetails, Plan plan) {
+	public Employee(String employeeName, double salary, AccountDetails accountDetails, Set<Plan> planList) {
 		super();
 		this.employeeName = employeeName;
 		this.salary = salary;
-		this.finalAmount = finalAmount;
 		this.accountDetails = accountDetails;
-		this.plan = plan;
-	}
-
-	public Plan getPlan() {
-		return plan;
-	}
-
-	public void setPlan(Plan plan) {
-		this.plan = plan;
+		this.planList = planList;
 	}
 
 	public String getEmployeeName() {
@@ -72,14 +66,6 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public double getFinalAmount() {
-		return finalAmount;
-	}
-
-	public void setFinalAmount(double finalAmount) {
-		this.finalAmount = finalAmount;
-	}
-
 	public AccountDetails getAccountDetails() {
 		return accountDetails;
 	}
@@ -88,10 +74,18 @@ public class Employee {
 		this.accountDetails = accountDetails;
 	}
 
+	public Set<Plan> getPlanList() {
+		return planList;
+	}
+
+	public void setPlanList(Set<Plan> planList) {
+		this.planList = planList;
+	}
+
 	@Override
 	public String toString() {
-		return "Employee [employeeName=" + employeeName + ", salary=" + salary + ", finalAmount=" + finalAmount
-				+ ", accountDetails=" + accountDetails + ", plan=" + plan + "]";
+		return "Employee [employeeName=" + employeeName + ", salary=" + salary + ", accountDetails=" + accountDetails
+				+ ", planList=" + planList + "]";
 	}
 
 }

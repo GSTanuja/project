@@ -33,20 +33,25 @@ public class AccountDetailsServiceImpl implements IAccountDetailsService {
          accountDetailsRepository.deleteById(accountNo);
 	}
 
-	@Override
-	public AccountDetails getByAccountType(String accountType) {
-		return null;
-	}
+	
 
 	@Override
 	public List<AccountDetails> getAll() {
 		return null;
 	}
 
+	
+
 	@Override
-	public AccountDetails getByBankName(String bankName) {
+	public AccountDetails getAccountTypeByEmployeeName(String employeeName) {
 		// TODO Auto-generated method stub
-		return null;
+		return accountDetailsRepository.findAccountTypeByEmployeeName(employeeName);
+	}
+
+	@Override
+	public AccountDetails getBankNameByEmployeeId(Integer emplyoeeId) {
+		// TODO Auto-generated method stub
+		return accountDetailsRepository.findBankNameByEmployeeId(emplyoeeId);
 	}
 
 }

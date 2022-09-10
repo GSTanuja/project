@@ -1,72 +1,72 @@
 package com.retirementapp.model;
 
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Plan {
-	
 
 	@Id
-	@GeneratedValue(generator = "plan_gen", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "plan_gen", sequenceName = "plan_seq", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(generator = "plan_id", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "plan_id", sequenceName = "plan_seq", initialValue = 1, allocationSize = 1)
 	private Integer uanId;
 	private String planName;
 	private String planType;
+	private double maturityAmount;
 	private int term;
-	private double premium;
 	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	private Set<Employee> employeeList;
-	
+	@ManyToOne
+	@JoinColumn(name = "employee_id")
+	private Employee employee;
+
 	public Plan() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
-	public Plan(String planName, String planType, int term, double premium) {
+
+	public Plan(String planName, String planType, double maturityAmount, int term) {
 		super();
 		this.planName = planName;
 		this.planType = planType;
+		this.maturityAmount = maturityAmount;
 		this.term = term;
-		this.premium = premium;
 	}
 
 	public String getPlanName() {
 		return planName;
 	}
+
 	public void setPlanName(String planName) {
 		this.planName = planName;
 	}
+
 	public Integer getUanId() {
 		return uanId;
 	}
+
 	public void setUanId(Integer uanId) {
 		this.uanId = uanId;
 	}
+
 	public String getPlanType() {
 		return planType;
 	}
+
 	public void setPlanType(String planType) {
 		this.planType = planType;
 	}
-	
-	
 
-	public Set<Employee> getEmployeeList() {
-		return employeeList;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEmployeeList(Set<Employee> employeeList) {
-		this.employeeList = employeeList;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public int getTerm() {
@@ -76,22 +76,21 @@ public class Plan {
 	public void setTerm(int term) {
 		this.term = term;
 	}
+	
 
-	public double getPremium() {
-		return premium;
+	public double getMaturityAmount() {
+		return maturityAmount;
 	}
 
-	public void setPremium(double premium) {
-		this.premium = premium;
+	public void setMaturityAmount(double maturityAmount) {
+		this.maturityAmount = maturityAmount;
 	}
 
 	@Override
 	public String toString() {
-		return "Plan [planName=" + planName + ", planType=" + planType + ", term=" + term + ", premium=" + premium
-				+ "]";
+		return "Plan [planName=" + planName + ", planType=" + planType + ", maturityAmount=" + maturityAmount
+				+ ", term=" + term + "]";
 	}
-
-	
 
 	
 

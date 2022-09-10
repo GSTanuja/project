@@ -12,8 +12,8 @@ public interface IPlanService {
 
 	//query the table
 	Plan getById(int uanId);
-	Plan getByPlanName(String planName);
-	Plan getByPlanType(String planType);
+	List<Plan> getPlanByEmployeeName(String employeeName);
+	List<Plan> getPlanByEmployeeId(int emplyoeeId);
 	List<Plan> getAll();
 
 }

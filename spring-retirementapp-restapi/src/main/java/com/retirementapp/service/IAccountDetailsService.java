@@ -13,8 +13,8 @@ public interface IAccountDetailsService {
 	void deleteAccountDetails(int accountNo);
 	
     //query the table
-	AccountDetails getByAccountType(String accountType);
-	AccountDetails getByBankName(String bankName);
+	AccountDetails getAccountTypeByEmployeeName(String employeeName);
+	AccountDetails getBankNameByEmployeeId(Integer emplyoeeId);
 	List<AccountDetails> getAll();
 
 }

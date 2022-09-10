@@ -34,17 +34,7 @@ public class PlanServiceImpl implements IPlanService {
 
 	@Override
 	public Plan getById(int uanId) {
-		return null;
-	}
-
-	@Override
-	public Plan getByPlanName(String planName) {
-		return null;
-	}
-
-	@Override
-	public Plan getByPlanType(String planType) {
-		return null;
+		return planRepository.findById(uanId).get();
 	}
 
 	@Override
@@ -52,4 +42,20 @@ public class PlanServiceImpl implements IPlanService {
 		return null;
 	}
 
+	
+
+	@Override
+	public List<Plan> getPlanByEmployeeName(String employeeName) {
+		return planRepository.findPlanByEmployeeName(employeeName);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Plan> getPlanByEmployeeId(int emplyoeeId) {
+		// TODO Auto-generated method stub
+		return planRepository.findPlanByEmployeeId(emplyoeeId);
+	}
+
+	
 }
