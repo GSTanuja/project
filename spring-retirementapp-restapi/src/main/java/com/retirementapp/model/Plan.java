@@ -1,6 +1,6 @@
 package com.retirementapp.model;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Plan {
@@ -20,8 +22,9 @@ public class Plan {
 	private String planType;
 	private double maturityAmount;
 	private int term;
-	
-	@ManyToOne
+
+	@ManyToOne(cascade = CascadeType.ALL)
+//	@JsonIgnore
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
 
@@ -76,7 +79,6 @@ public class Plan {
 	public void setTerm(int term) {
 		this.term = term;
 	}
-	
 
 	public double getMaturityAmount() {
 		return maturityAmount;
@@ -91,7 +93,5 @@ public class Plan {
 		return "Plan [planName=" + planName + ", planType=" + planType + ", maturityAmount=" + maturityAmount
 				+ ", term=" + term + "]";
 	}
-
-	
 
 }

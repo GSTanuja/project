@@ -4,12 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 public class AccountDetails {
-
 
 	@Id
 	@GeneratedValue(generator = "account_gen", strategy = GenerationType.AUTO)
@@ -21,7 +19,6 @@ public class AccountDetails {
 
 	public AccountDetails() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public AccountDetails(String accountType, String bankName, long accountNo) {
@@ -42,18 +39,23 @@ public class AccountDetails {
 	public String getAccountType() {
 		return accountType;
 	}
+
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
+
 	public String getBankName() {
 		return bankName;
 	}
+
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
+
 	public long getAccountNo() {
 		return accountNo;
 	}
+
 	public void setAccountNo(long accountNo) {
 		this.accountNo = accountNo;
 	}

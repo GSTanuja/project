@@ -1,6 +1,5 @@
 package com.retirementapp.service;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public Employee addEmployee(Employee employee) {
-		return employeeRepository.save(employee);
+	public void addEmployee(Employee employee) {
+		 employeeRepository.save(employee);
 	}
 
 	@Override
@@ -40,21 +39,24 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Override
 	public List<Employee> getAll() {
-		// TODO Auto-generated method stub
 		return employeeRepository.findAll();
 	}
 
 	@Override
-	public Employee getEmployeeByPlanName(String planName) {
-		
+	public List<Employee> getEmployeeByPlanName(String planName) {
 		return employeeRepository.findEmployeeByPlanName(planName);
 	}
 
 	@Override
-	public Employee getEmployeeByBankName(String bankName) {
+	public List<Employee> getEmployeeByBankName(String bankName) {
 		// TODO Auto-generated method stub
 		return employeeRepository.findEmployeeByBankName(bankName);
 	}
 
-	
+	@Override
+	public List<Employee> getEmployeeByGreaterSalary(double salary) {
+		// TODO Auto-generated method stub
+		return employeeRepository.findEmployeeByGreaterSalary(salary);
+	}
+
 }

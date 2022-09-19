@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Employee {
 	private String employeeName;
@@ -22,12 +24,12 @@ public class Employee {
 	@SequenceGenerator(name = "employee_id", sequenceName = "employee_seq", initialValue = 1, allocationSize = 1)
 	private Integer emplyoeeId;
 	private double salary;
-	
+//	 @JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_id")
 	private AccountDetails accountDetails;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "employee_id")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "employee")
 	private Set<Plan> planList;
 
 	public Employee() {

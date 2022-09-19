@@ -1,20 +1,18 @@
 package com.retirementapp.exception;
 
-public class PlanNotFoundException extends RuntimeException {
+public class EmployeeNotFoundException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PlanNotFoundException() {
+	public EmployeeNotFoundException() {
 		super();
-
 	}
 
-	public PlanNotFoundException(String message) {
+	public EmployeeNotFoundException(String message) {
 		super(message);
-
 	}
 
 }

@@ -30,27 +30,21 @@ public class AccountDetailsServiceImpl implements IAccountDetailsService {
 
 	@Override
 	public void deleteAccountDetails(int accountNo) {
-         accountDetailsRepository.deleteById(accountNo);
+		accountDetailsRepository.deleteById(accountNo);
 	}
-
-	
 
 	@Override
 	public List<AccountDetails> getAll() {
-		return null;
+		return accountDetailsRepository.findAll();
 	}
-
-	
 
 	@Override
 	public AccountDetails getAccountTypeByEmployeeName(String employeeName) {
-		// TODO Auto-generated method stub
 		return accountDetailsRepository.findAccountTypeByEmployeeName(employeeName);
 	}
 
 	@Override
 	public AccountDetails getBankNameByEmployeeId(Integer emplyoeeId) {
-		// TODO Auto-generated method stub
 		return accountDetailsRepository.findBankNameByEmployeeId(emplyoeeId);
 	}
 
